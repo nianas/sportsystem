@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Backet</string>
+    <string name="teamHint">Введите список игроков</string>
+    <string name="nameHint">Название команды</string>
+</resources>
