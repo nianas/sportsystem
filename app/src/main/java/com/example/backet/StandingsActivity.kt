@@ -5,16 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import com.example.backet.models.Repository
 import kotlinx.android.synthetic.main.activity_standings.*
 
 class StandingsActivity : AppCompatActivity() {
     private lateinit var standings: String
     override fun onCreate(savedInstanceState: Bundle?) {
+        Repository.getTeams { val teams = it }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_standings)
 
-
-       var standingsTextView:TextView = this.findViewById(R.id.standingsTextView)
+        var standingsTextView:TextView = this.findViewById(R.id.standingsTextView)
         var button = findViewById<Button>(R.id.button)
 
         var team1 = intent.getStringExtra("team1")

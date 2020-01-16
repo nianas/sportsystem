@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
-import kotlinx.android.synthetic.main.activity_standings.*
+import com.example.backet.models.dataBase.Team
 
 class CreateMatchActivity : AppCompatActivity() {
 
@@ -22,16 +22,15 @@ class CreateMatchActivity : AppCompatActivity() {
         var team2EditText = this!!.findViewById<EditText>(R.id.team2EditText)
         var scoreEditText = this!!.findViewById<EditText>(R.id.scoreEditText)
         var createButton = this.findViewById<Button>(R.id.createButton)!!
-
-
         createButton.setOnClickListener {
             val standingIntent = Intent(this, StandingsActivity::class.java)
 
-            standingIntent.putExtra("team1", team1EditText.text.toString())
+            standingIntent.putExtra("match", team1EditText.text.toString())
             standingIntent.putExtra("team2", team2EditText.text.toString())
             standingIntent.putExtra("score", scoreEditText.text.toString())
             startActivity(standingIntent)
         }
+
     }
 
 
