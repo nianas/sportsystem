@@ -12,12 +12,12 @@ class CreateTeamActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_team)
-        val teamName =findViewById<EditText>(R.id.teamName)
+        val teamName = findViewById<EditText>(R.id.teamName)
         val addButton = findViewById<Button>(R.id.createTeamButton)
 
 
         addButton.setOnClickListener {
-            Repository.insertTeam(Team(0, teamName.text.toString()))
+            Repository.addTeam(Team(0, teamName.text.toString()))
             val mainIntent = Intent(this, MainActivity::class.java)
             startActivity(mainIntent)
         }

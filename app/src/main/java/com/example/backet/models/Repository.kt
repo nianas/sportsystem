@@ -1,65 +1,33 @@
 package com.example.backet.models
 
 import com.example.backet.models.dataBase.Match
-import com.example.backet.models.dataBase.MatchDatabase
 import com.example.backet.models.dataBase.Team
-import com.example.backet.models.dataBase.TeamDatabase
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 object Repository {
 
-    const val MATCH_DATABASE_NAME = "matchDatabase"
-    const val TEAM_DATABASE_NAME = "teamDatatbase"
-
-    private lateinit var matchesDatabase: MatchDatabase
-    private lateinit var teamsDatabase: TeamDatabase
-
-    fun setMatchesDatabase(
-        matchDatabase: MatchDatabase
-    ) {
-        this.matchesDatabase = matchDatabase
+    private lateinit var teams: MutableList<Team>
+    private lateinit var matches: MutableList<Match>
+    fun setMatchesDatabase() {
+        this.matches = mutableListOf()
     }
 
-    fun getMatches(
-        onGetMatches: (matches: List<Match>) -> Unit
-    ) {
-        GlobalScope.launch(Dispatchers.Main) {
-            onGetMatches(
-                withContext(Dispatchers.IO) {
-                    matchesDatabase.matchDao().getAllMatches()
-            })
-        }
+    fun getMatches():List<Match> {
+        return matches
     }
     fun addMatch(match: Match) {
-        GlobalScope.launch(Dispatchers.IO) {
-            matchesDatabase.matchDao().insertMatch(match)
-        }
+        matches.add(match)
     }
 
-    fun setTeamsDatabase(
-        teamsDatabase: TeamDatabase
-    ) {
-        this.teamsDatabase = teamsDatabase
+    fun setTeamsDatabase() {
+        this.teams = mutableListOf()
+        teams.add(Team(0,"Зенит"))
+        teams.add(Team(1, "Спартак"))
     }
-
-    fun getTeams(
-        onGetTeams: (teams: List<Team>) -> Unit)
-    {
-            GlobalScope.launch(Dispatchers.Main) {
-                onGetTeams(
-                    withContext(Dispatchers.IO) {
-                        teamsDatabase.teamDao().getAllTeams()
-                    }
-                )
-            }
+    fun getTeams():List<Team> {
+        return teams
     }
-    fun insertTeam(team: Team) {
-        GlobalScope.launch(Dispatchers.IO) {
-            teamsDatabase.teamDao().insertTeam(team)
-        }
+    fun addTeam(team: Team) {
+        teams.add(team)
     }
 
 }

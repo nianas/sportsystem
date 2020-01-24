@@ -14,10 +14,7 @@ class TeamListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_team_list)
         val output = findViewById<TextView>(R.id.teamList)
         var teamList = ""
-        var teams: List<Team> = listOf()
-        Repository.getTeams {
-            teams = it
-        }
+        var teams: List<Team> = Repository.getTeams()
         teams.forEach {
             teamList+= it.name + "\n"
         }

@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_standings.*
 class StandingsActivity : AppCompatActivity() {
     private lateinit var standings: String
     override fun onCreate(savedInstanceState: Bundle?) {
-        Repository.getTeams { val teams = it }
+        val teams = Repository.getTeams()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_standings)
 
